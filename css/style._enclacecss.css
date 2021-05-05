@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+:root{
+    --primary-color: #000;
+    --secondary-color:#f2f2f2;
+    --decoration-color:#c79800;
+   }
+
+body{
+    background:var(--secondary-color);
+    font-family: 'Roboto';
+    color:var(--primary-color);
+    width: 100%; /*este width por ahí no hace falta*/
+  }
+
+header{
+    background-color:var(--primary-color);
+    text-align: center;
+    z-index: 100; /*no queremos que nos pise*/
+}
+header .logo {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+/* Menú principal */
+nav ul {
+    /*Les adelantamos flex*/
+    display: flex; /*permite trabajar en líneas y columnas con pocas líneas de código*/
+    /*Le tenemos que poner AL PADRE el display:flex*/
+    /*Lo que hace el navegador es poner a los li uno al lado del otro, que son los hijos de ul*/
+    flex-wrap:wrap;
+    justify-content: center;
+    /*flex-direction: column; ESTO SIRVE PARA LOS CELULARES*/
+    list-style: none;
+    padding: 0px;
+    margin-left: 10px;
+}
+nav ul li {
+    margin: 20px;
+}
+nav ul li a{
+  position:relative;
+  margin:15px;
+  font-size:25px;  
+  color:var(--secondary-color);
+  text-decoration: none;
+}
+/************ 
+Animación debajo de enlaces 
+********/
+nav ul li a:before{
+  content:'';
+  background: var(--decoration-color);
+  position:absolute;
+  bottom:-10px; 
+  width: 0;
+  background-color: var(--decoration-color);
+  height: 5px;
+  transition: width 0.7s;
+
+}
+/* NECESITAMOS UN HOVER
+nav ul li a hover before{
+    ancho 100%
+}*/
+nav ul li a:hover::before{
+    background-color: var(--decoration-color);
+    width: 100%;
+
+}
+
+/* Barra redes */
+.social {
+	position: fixed; 
+	left: 0; 
+	top: calc(50% - 90px); /* Para que quede centrada le decimos que al 50% del alto le reste la mitad del alto de la barra: 16px de la letra + 10 padding-top + 10padding-bottom */
+	z-index: 2000; 
+}
+.social ul {
+	list-style: none;
+}
+
+.social ul li a {
+    display: inline-block; /* porque le quiero agregar padding */
+    color:var(--secondary-color);
+    background: var(--primary-color);
+    padding: 10px 15px;
+    text-decoration: none;
+    transition: all 0.7s;
+}
+
+/* .social ul li a :hover {background-color(negro) y padding(10px 30px)} 
+o con transform scale
+*/
+.social ul li a:hover{
+    background-color: var(--primary-color);
+    padding: 10px 30px;
+}
+
+.social ul li .icon-facebook {background:#3b5998;} /* Establecemos los colores de cada red social, aprovechando su class */
+.social ul li .icon-twitter {background: #00abf0;}
+.social ul li .icon-instagram {background: #E4405F;}
+.social ul li .icon-whatsapp {background: #25D366;}
+.social ul li .icon-mail {background: #666666;}
+
+/*********** 
+Cambiamos el fondo cuando el usuario pase el mouse  
+     Hacemos mas grande el espacio cuando el usuario pase el mouse 
+ **********/
+  /* Contenido */
+.container{
+    width: 80%;
+    margin: 5% auto;
+}
+
+.container p{
+    margin-top: 10px;
+    text-align: justify;
+}
+.container a{
+    display: inline-block;
+    background-color:var(--primary-color);
+    color:var(--secondary-color);
+    text-decoration: none;
+    padding: 15px;
+    margin-top: 15px;
+}
+.container a:hover{
+    color:var(--decoration-color);
+}
+ 
+/* HAcemos girar a spinner */
+.spinner{
+    width: 64px;
+    height: 64px;
+    position: fixed;
+    top: calc(50% - 32px);
+    /* "calc" de calcular. */
+    left: calc(50% - 32px);
+    border-radius: 50%;
+    z-index: 2;
+    background-color: transparent;
+    border-top: 10px solid rgb(188, 202, 66);
+    border-right: 10px solid rgb(66,139,202);
+    border-bottom: 10px solid rgb(202, 66, 129);
+    border-left: 10px solid rgba(66,139,202,.2);
+    /*animation: spinner tiempo infinite*/
+    animation: spinner 0.8s linear infinite;
+
+}
+
+
+
+@keyframes spinner{
+    0%{
+        transform: rotate(0deg)
+    }
+
+    100%{
+        transform: rotate(360deg)
+    }
+}
+
